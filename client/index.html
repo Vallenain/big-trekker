@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr" data-framework="angularjs">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,
+        initial-scale=1.0">
+
+    <base href="/">
+
+    <link rel="shortcut icon" type="image/png" href="/static/img/favicon/favicon.png" />
+
+    <link rel="manifest" href="/static/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Quentin au Pérou</title>
+
+    <style media="screen">
+        /* to hide app when angular not ready */
+        
+        [deferred-cloak],
+        [data-deferred-cloak],
+        [x-deferred-cloak],
+        .deferred-cloak {
+            display: none;
+        }
+    </style>
+
+    <!-- build:css -->
+    <!-- endbuild -->
+</head>
+
+<body data-deferred-cloak ng-controller="MainCtrl as mainCtrl">
+    <header class="tc-white-1 p+" style="background-color: #D91023">
+
+        <lx-button class="nav-button" lx-type="icon" lx-color="white">
+            <i class="mdi mdi-{{ mainCtrl.icon }}" ng-click="mainCtrl.sidebarButonEvent()"></i>
+        </lx-button>
+
+        <h1 style="color: white;">
+            <img src="/static/img/logo.png">
+            <span>Quentin au Pérou</span>
+        </h1>
+        <nav>
+            <a href="/">
+                <lx-button lx-type="flat" lx-color="white">Suivez moi</lx-button>
+            </a>
+            <a href="/contact">
+                <lx-button lx-type="flat" lx-color="white">Contact</lx-button>
+            </a>
+        </nav>
+    </header>
+    <div class="mobile-nav" ng-swipe-left="mainCtrl.closeSidebar()" ng-class="{'mobile-nav-active': mainCtrl.isSidebarShown()}">
+        <a href="/" class="list-row mobile-nav-item" ng-click="mainCtrl.closeSidebar()">
+            <span class="list-row__primary">
+                    <lx-icon lx-id="google-maps" lx-size="m" lx-color="indigo" lx-type="flat"></lx-icon>
+                </span>
+            <span class="list-row__content">
+                    <span class="display-block">Suivez moi</span>
+            </span>
+        </a>
+        <a href="/contact" class="list-row mobile-nav-item" ng-click="mainCtrl.closeSidebar()">
+            <span class="list-row__primary">
+                    <lx-icon lx-id="account-card-details" lx-size="s" lx-color="indigo" lx-type="flat"></lx-icon>
+                </span>
+            <span class="list-row__content">
+                    <span class="display-block">Contact</span>
+            </span>
+        </a>
+    </div>
+    <div class="main">
+        <div class="swipe-bar" ng-swipe-right="mainCtrl.swipe($event)" ng-click="mainCtrl.closeSidebar()" ng-class="{'sidebar__open': mainCtrl.isSidebarShown()}">
+        </div>
+        <ng-view></ng-view>
+    </div>
+
+    <lx-dialog id="premiere-visite" lx-auto-close="false" lx-escape-close="false">
+        <lx-dialog-header>
+            <div class="toolbar bgc-primary pl++">
+                <span class="toolbar__label tc-white fs-title">
+                        Première visite
+                    </span>
+            </div>
+        </lx-dialog-header>
+
+        <lx-dialog-content>
+            <lx-tabs-panes>
+                <lx-tab-pane>
+                    <p class="p++">
+                        Bonjour et bienvenue, <br><br> Si vous voyez ce message cela veut dire que c'est la première fois que vous venez sur cette application.<br><br>Ce site permet de me suivre à travers mon aventure au Pérou ! Je vais essayer de poster
+                        des messages tout au long de mon périple.
+                        <br><br> Je commence mon voyage le 11 octobre 2017, il durera jusqu'au 11 novembre. <br><br> Merci de votre visite, <br> A bientôt <br> Quentin
+                    </p>
+                </lx-tab-pane>
+            </lx-tabs-panes>
+        </lx-dialog-content>
+
+        <lx-dialog-footer>
+            <lx-button lx-type="flat" lx-dialog-close>Ok</lx-button>
+        </lx-dialog-footer>
+    </lx-dialog>
+
+    <!-- build:js -->
+    <!-- endbuild -->
+</body>
+
+</html>

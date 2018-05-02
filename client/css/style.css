@@ -1,0 +1,537 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #FAFAFA;
+}
+
+header {
+    overflow: hidden;
+    height: 65px;
+    padding: 15px;
+}
+
+header h1 {
+    font-size: 1.4em;
+    display: inline-block;
+    vertical-align: top;
+}
+
+header h1 img {
+    height: 40px;
+    display: inline-block;
+    margin-top: -5px;
+}
+
+header h1 span {
+    vertical-align: top;
+    display: inline-block;
+}
+
+header nav {
+    display: none;
+}
+
+
+/* mobile navigation */
+
+header .nav-button {
+    display: inline-block;
+}
+
+.mobile-nav {
+    background-color: rgb(247, 247, 247);
+    position: absolute;
+    top: 65px;
+    bottom: 0;
+    width: 300px;
+    z-index: 20;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.4);
+    left: -310px;
+    transition: 0.6s;
+}
+
+.mobile-nav-active {
+    left: 0px;
+}
+
+.mobile-nav-item {
+    text-decoration: none;
+    color: #565656;
+}
+
+.swipe-bar {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 11px;
+    z-index: 11;
+}
+
+.sidebar__open {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+}
+
+.main {
+    position: absolute;
+    top: 65px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.map,
+.menu {
+    display: inline-block;
+    height: 100%;
+}
+
+.menu {
+    width: 100%;
+    margin-right: -5px;
+    background-color: rgb(250, 250, 250);
+    border: none;
+    z-index: 10;
+    position: absolute;
+    top: 100%;
+    margin-top: -65px;
+    transition: 0.3s;
+}
+
+.map {
+    display: inline-block;
+    width: 100%;
+    margin-right: -1px;
+    height: calc(100% - 65px);
+}
+
+.menu nav {
+    position: absolute;
+    width: 100%;
+    height: 110px;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu .mobile-message {
+    height: 61px;
+    background-color: transparent;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    text-align: center;
+}
+
+.hide_show_btn {
+    height: 100%;
+    width: 100%;
+}
+
+.menu__swipe_up {
+    top: 0;
+    margin-top: 0px;
+    transition: 0.3s;
+}
+
+.progress-bar-displayed {
+    margin-top: 5px;
+}
+
+.menu nav .checkboxes {
+    margin-top: 15px;
+}
+
+.menu nav .album-button {
+    width: 100%;
+}
+
+.menu .list-container,
+.menu .detail-container {
+    position: absolute;
+    top: 61px;
+    bottom: 0;
+    width: 100%;
+    overflow: scroll;
+    font-size: 0.9em;
+    font-family: 'Roboto', 'Arial', 'sans-serif';
+}
+
+.menu .list-container {
+    z-index: 11;
+}
+
+
+/* slide in to show the detail */
+
+.menu .slide-in {
+    transition: 0.6s;
+    left: 0;
+}
+
+
+/* I don't know why but don't write
+.menu .detail-container
+ */
+
+.detail-container {
+    /*display: none;*/
+    background-color: white;
+    z-index: 12;
+    left: -100%;
+    transition: 0.7s;
+    padding-bottom: 16px;
+}
+
+.menu .item {
+    position: relative;
+    padding: 16px;
+    padding-bottom: 0;
+}
+
+.menu .item:hover,
+.menu .item-selected,
+.mobile-nav-item:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.menu .item-header {
+    position: relative;
+    height: 30px;
+}
+
+.menu .item-date {
+    display: inline-block;
+    padding-top: 6px;
+    font-weight: lighter;
+}
+
+.menu .item-icons {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+
+.menu .item-icons img {
+    display: inline-block;
+    height: 100%;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.menu .item-message {
+    margin-top: 10px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.2);
+    text-align: justify;
+}
+
+.menu .item:last-child .item-message {
+    border: none;
+}
+
+
+/* detail container */
+
+.menu .detail-container .item-sub-header {
+    text-transform: uppercase;
+    font-weight: lighter;
+    margin-bottom: 10px;
+    font-size: 0.8em;
+}
+
+.menu .detail-container .item {
+    cursor: default;
+}
+
+.menu .detail-container .item-photos img {
+    max-height: 270px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+}
+
+
+/* album dialog */
+
+.album-dialog {
+    position: absolute;
+    bottom: 0;
+    top: 112px;
+    width: 100%;
+    overflow: scroll;
+}
+
+.dialog-pane {
+    text-align: center;
+}
+
+.album-photo-img-container {
+    position: relative;
+    display: inline-block;
+    /*width: 24%;*/
+    width: 32.3%;
+    float: left;
+    overflow: hidden;
+    margin: 0 0.5% 0.5%;
+}
+
+.album-photo-img-hover:hover {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+53,0.65+100 */
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 53%, rgba(0, 0, 0, 0.65) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 53%, rgba(0, 0, 0, 0.65) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 53%, rgba(0, 0, 0, 0.65) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000', GradientType=0);
+    /* IE6-9 */
+    cursor: pointer;
+}
+
+.album-photo-img-hover:hover a {
+    display: inline;
+}
+
+.album-photo-img-hover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.album-photo-img-hover a {
+    display: none;
+    position: absolute;
+    color: white;
+    text-decoration: none;
+    bottom: 5px;
+    right: 10px;
+    font-size: 0.7em;
+    font-weight: bold;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.album-photo-img-hover a:hover {
+    text-decoration: underline;
+}
+
+.album-photo-img {
+    max-width: none;
+    width: 100%;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+
+/* videos container */
+
+.video-container {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    position: relative;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+/* carousel */
+
+.carousel-container {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    margin-left: 0;
+    width: initial;
+    background-color: black;
+    padding: 32px;
+}
+
+.carousel-content {
+    position: absolute;
+    top: 32px;
+    bottom: 32px;
+    right: 32px;
+    left: 32px;
+}
+
+.carousel-content .rn-carousel {
+    height: 100%;
+}
+
+.rn-carousel-controls {
+    display: none;
+    position: absolute;
+    top: 0;
+    height: calc(100% - 33px);
+    width: 100%;
+    color: white;
+    cursor: auto;
+}
+
+
+/*.rn-carousel-control {
+	bottom: 0;
+	top:auto;
+}*/
+
+.carousel-content img {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+
+.carousel-content-media {
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-content-media-center {
+    text-align: center;
+}
+
+.carousel-content-media a {
+    right: 15px;
+    bottom: 0px;
+    position: absolute;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+
+.carousel-content-media a:hover {
+    text-decoration: underline;
+}
+
+.carousel-content-media video {
+    max-height: 100%;
+    max-width: 100%;
+    width: 80%;
+}
+
+.carousel-close-btn {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+}
+
+
+/* CSS for about me and contact pages */
+
+.text-container {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.text-container img {
+    margin: auto;
+}
+
+.text-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.text-container a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 770px) and (max-width: 1023px) {
+    .menu {
+        width: 340px;
+        border-right: 2px solid #bbb;
+        position: relative;
+        z-index: 10;
+        top: 0px;
+        margin-top: 0px;
+    }
+    .menu .mobile-message {
+        display: none;
+    }
+    .map {
+        width: calc(100% - 339px);
+        height: 100%;
+    }
+    .rn-carousel-controls {
+        display: block;
+    }
+    .menu .list-container,
+    .menu .detail-container {
+        top: 0px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    header nav {
+        display: inline-block;
+    }
+    header .nav-button,
+    .mobile-nav {
+        display: none;
+    }
+    header h1 {
+        width: 320px;
+    }
+    .menu {
+        width: 340px;
+        border-right: 2px solid #bbb;
+        position: relative;
+        z-index: 10;
+        top: 0px;
+        margin-top: 0px;
+    }
+    .menu .mobile-message {
+        display: none;
+    }
+    .menu .list-container,
+    .menu .detail-container {
+        top: 0px;
+    }
+    .map {
+        width: calc(100% - 339px);
+        height: 100%;
+    }
+    .album-photo-img-container {
+        width: 180px;
+        margin: 0 5px 10px;
+    }
+    .rn-carousel-controls {
+        display: block;
+    }
+    .carousel-content-media {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+    }
+}

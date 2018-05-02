@@ -1,0 +1,11 @@
+{
+    "sms": [{
+        "id": "XXXX",
+        "latitude": 45.7353643,
+        "longitude": 4.8354188,
+        "message": "COUCOU",
+        "break": "break",
+        "weather": "clear-day",
+        "date": "123456"
+    }]
+}

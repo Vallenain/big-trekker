@@ -1,0 +1,13 @@
+<lx-progress lx-type="linear" lx-color="pink" ng-if="ctrl.showProgress()"></lx-progress>
+<div class="menu" ng-class="{'menu__swipe_up': ctrl.isMenuSwipedUp()}">
+    <div class="mobile-message noPreventDefault" ng-show="!ctrl.isMenuSwipedUp()">
+        <lx-button class="hide_show_btn" lx-type="flat" lx-color="red" ng-click="ctrl.showMenu()" ng-swipe-up="ctrl.showMenu()">Afficher plus</lx-button>
+    </div>
+    <div class="mobile-message noPreventDefault" ng-show="ctrl.isMenuSwipedUp()">
+        <lx-button class="hide_show_btn" lx-type="flat" lx-color="red" ng-click="ctrl.hideMenu()" ng-swipe-down="ctrl.hideMenu()">Masquer</lx-button>
+    </div>
+    <div class="noPreventDefault" ui-panel></div>
+</div>
+<div class="map">
+    <div ui-map></div>
+</div>
