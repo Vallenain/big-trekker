@@ -1,12 +1,13 @@
 node_modules/
 **/*.pyc
 **/bower_components/
-.venv/
+venv/
 .build/
-.python-libs/
+libs/
 **/.DS_Store
 .DS_Store
 server/static
 npm-debug.log
 server/templates/index.html
 server/config
+.idea/

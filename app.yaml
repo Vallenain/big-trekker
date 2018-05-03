@@ -7,10 +7,6 @@ handlers:
 - url: /static
   static_dir: server/static
 
-- url: /twitter-crawler
-  script: server.main.app
-  login: admin
-
 - url: /.*
   script: server.main.app
   secure: always
@@ -45,3 +41,4 @@ skip_files:
 - .python-libs/setuptools
 - scripts/
 - client/
+- .idea/

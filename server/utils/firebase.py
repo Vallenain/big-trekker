@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # No Licence
 # Author Ben Letchford <contact@benl.com.au>
 # repos : https://github.com/benletchford/python-firebase-gae
