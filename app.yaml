@@ -18,7 +18,6 @@ libraries:
   version: latest
 
 skip_files:
-- doc\.txt
 - node_modules/
 - .git/
 - .gitignore
@@ -35,10 +34,8 @@ skip_files:
 - bin/
 - server/scripts/
 - server/manage.py
-- .venv/bin
-- .venv/include
-- .venv/
-- .python-libs/setuptools
+- venv/
+- libs/setuptools
 - scripts/
 - client/
 - .idea/

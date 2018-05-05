@@ -11,3 +11,4 @@ npm-debug.log
 server/templates/index.html
 server/config
 .idea/
+client/js/private.js

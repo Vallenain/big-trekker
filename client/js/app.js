@@ -10,12 +10,12 @@ var angular = require('angular');
 require('angular-swipe');
 
 var indexTemplate = require('ngtemplate!html!./views/app-index.html');
-var contactTemplate = require('ngtemplate!html!./views/app-contact.html');
+var privateConfig = require('./private');
 
 require('angular-touch');
 require('angular-carousel');
 
-var module = angular.module('quentin-au-perou', [
+var module = angular.module('yves-a-le-faire', [
     require('angular-route'),
     require('angular-cookies'),
     'angular-carousel',
@@ -45,8 +45,6 @@ module.config(['$routeProvider', 'uiGmapGoogleMapApiProvider',
     function($routeProvider, uiGmapGoogleMapApiProvider,
         $locationProvider, $sceDelegateProvider) {
         'use strict';
-
-
         $sceDelegateProvider.resourceUrlWhitelist([
             // Allow same origin resource loads.
             'self',
@@ -63,17 +61,14 @@ module.config(['$routeProvider', 'uiGmapGoogleMapApiProvider',
                 controller: 'AppCtrl as ctrl',
                 templateUrl: indexTemplate
             })
-            .when('/contact', {
-                templateUrl: contactTemplate
-            })
             .otherwise({
                 redirectTo: '/'
             });
 
         uiGmapGoogleMapApiProvider.configure({
-            v: '3.29', //defaults to latest 3.X anyhow
+            v: '3.32', //defaults to latest 3.X anyhow
             libraries: 'geometry,visualization',
-            key: 'YOUR_API_KEY'
+            key: privateConfig.GoogleMapsApiKey
         });
 
         // use the HTML5 History API
@@ -83,5 +78,5 @@ module.config(['$routeProvider', 'uiGmapGoogleMapApiProvider',
 ]);
 
 angular.element(document).ready(function() {
-    angular.bootstrap(document, ['quentin-au-perou']);
+    angular.bootstrap(document, ['yves-a-le-faire']);
 });

@@ -68,7 +68,7 @@ $ gcloud app browse
 Add folder config in server. I removed the folder from the repos to protect my secrets data :)
 
 - server/config
-  - __init__.py
+  - \_\_init\_\_.py
   - dev.py
   - prod.py
 
@@ -96,32 +96,56 @@ ACCOUNT_SID = "YOUR_TWILIO_SID"
 AUTH_TOKEN = "YOUR_TWILIO_TOKEN"
 MY_PHONE_NUMBER = 'YOUR_PHONE_NUMBER' # Example : +33611223344
 
-
-# Twitter
-CONSUMER_KEY        = 'YOUR_CONSUMER_KEY'
-CONSUMER_SECRET     = 'YOUR_CONSUMER_SECRET'
-ACCESS_TOKEN        = 'YOUR_ACCESS_TOKEN'
-ACCESS_TOKEN_SECRET = 'YOUR_ACCESS_TOKEN_SECRET'
-
-MATCH_HASHTAG = 'YOUR_HASHTAG'
 ```
 
-You also have to change configuration in client/js/app.js :
-  Google API key : generate your own
+## On front side
+There is `client/js/private.js` file to add with this content
 
-Change configuration in client/js/controllers/appController.js :
-    Firebase key : generate your own
+``` javascript
+module.exports = {
+    GoogleMapsApiKey: YOURS,
+    FirebaseConfig: {
+        apiKey: "YOURS",
+        authDomain: "PROJECT_ID.firebaseapp.com",
+        databaseURL: "https://PROJECT_ID.firebaseio.com",
+        projectId: "PROJECT_ID",
+        storageBucket: "YOUR_BUCKET.appspot.com", // you can use the default free one of App Engine
+        messagingSenderId: "YOURS" // settings > cloud messaging
+    }
+};
+```
 
-Create a twitter application and generate project tokens and access_token with your account.
+## Format of the SMS
+Each piece of information is separated with ` - `. Make sure there is none in the `message` part.
+The parts are (order matters):
+1. latitude
+2. longitude
+3. weather (see possible values below)
+4. break (see possible values below)
+5. message
 
-## Cron
+### Weather values
+- sunny
+- clear-night'
+- cloudy
+- hazy
+- most-cloudy-day
+- most-cloudy-night
+- rain-snow
+- rainy
+- showcase
+- snowy
+- storm
+- thunder
+- unknown
+- windy
 
-A cron is called every two hour to crawl my twitter timeline and match sms message
-to tweet (photo and video).
-
-To match I made a format based on sms record id (send by the server) and a hashtag.
-
-The cron is defined in cron.yaml
+### Break values
+- eat
+- camp
+- break
+- finish
+- start
 
 ## Licence
 

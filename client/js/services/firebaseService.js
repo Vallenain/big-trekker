@@ -1,5 +1,6 @@
 var angular = require('angular');
 var firebase = require('firebase');
+var privateConfig = require('./../private');
 
 module.exports = ['$firebaseArray', '$q', 'mapManagerService', 'pointsService',
     function($firebaseArray, $q, mapManagerService, pointsService) {
@@ -8,14 +9,7 @@ module.exports = ['$firebaseArray', '$q', 'mapManagerService', 'pointsService',
             initFirebase: initFirebase
         };
 
-        var config = {
-            apiKey: "YOUR_APIKEY",
-            authDomain: "YOUR_DOMAIN.firebaseapp.com",
-            databaseURL: "https://YOUR_DOMAIN.firebaseio.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID"
-        };
+        var config = privateConfig.FirebaseConfig;
 
         var refs = null;
         var points = null;

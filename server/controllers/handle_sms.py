@@ -74,8 +74,8 @@ def get_next_id(firebase):
     result = firebase.get()
     return 1 if result is None else len(result) + 1
 
-@app.route('/sms-reciever', methods=['GET', 'POST'])
-def smsReciever():
+@app.route('/sms-receiver', methods=['GET', 'POST'])
+def smsReceiver():
     """
         Handle the SMS when is coming and save it in Firebase
     """

@@ -21,7 +21,7 @@ gulp.task("webpack:prod", function(callback) {
 	var myConfig = Object.create(webpackConfig);
 
 	myConfig.output = {
-		path: __dirname + '/.build/',
+		path: __dirname + '/server/static/',
 		filename: 'bundle.min.js'
 	};
 
@@ -48,7 +48,7 @@ gulp.task('webpack:dev', function (callback) {
 	var myConfig = Object.create(webpackConfig);
 
 	myConfig.output = {
-		path: __dirname + '/.build/',
+		path: __dirname + '/server/static/',
 		filename: 'bundle.js'
 	};
 
@@ -60,12 +60,12 @@ gulp.task('webpack:dev', function (callback) {
 
 gulp.task('copy:fonts', function () {
 	return gulp.src('bower_components/lumx/dist/fonts/*')
-			.pipe(gulp.dest('./.build/fonts'));
+			.pipe(gulp.dest('./server/static/css/fonts'));
 });
 
 gulp.task('copy:data', function () {
 	return gulp.src('client/data/*')
-			.pipe(gulp.dest('./.build/data'));
+			.pipe(gulp.dest('./server/static/data'));
 });
 
 gulp.task('css:dev', function () {
@@ -76,7 +76,7 @@ gulp.task('css:dev', function () {
 			])
 			.pipe(plugins.replace(/url\(.\//g, 'url(..\/'))
 			// .pipe(plugins.csscomb())
-			.pipe(gulp.dest('./.build/css'));
+			.pipe(gulp.dest('./server/static/css'));
 });
 
 gulp.task('css:prod', function () {
@@ -89,33 +89,23 @@ gulp.task('css:prod', function () {
 			   .pipe(plugins.replace(/url\(.\//g, 'url(..\/'))
 	  		   .pipe(plugins.concat('main.min.css'))
       		   .pipe(plugins.csso())
-      		   .pipe(gulp.dest('./.build/css'));
+      		   .pipe(gulp.dest('./server/static/css'));
 });
 
 gulp.task('clean', function() {
-	return gulp.src('.build/**/*', {read: false})
+	return gulp.src(['server/static/**/*', 'server/static/**/*'], {read: false})
     		   .pipe(plugins.rm());
-});
-
-gulp.task('symlink', function (callback) {
-	try { // if exception the directory doesn't exist
-      !fs.statSync('server/static');
-	  callback(); // it exists
-  	} catch(e) {
-		return gulp.src('./.build')
-			.pipe(plugins.sym('server/static'));
-	}
 });
 
 gulp.task('img:dev', function() {
     return gulp.src('client/img/**/*')
-    .pipe(gulp.dest('.build/img'));
+    .pipe(gulp.dest('server/static/img'));
 });
 
 gulp.task('img:prod', function() {
     return gulp.src('client/img/**/*')
     .pipe(plugins.imagemin({ progressive: true }))
-    .pipe(gulp.dest('.build/img'));
+    .pipe(gulp.dest('server/static/img'));
 });
 
 gulp.task('replace:dev', function () {
@@ -137,25 +127,10 @@ gulp.task('replace:prod', function () {
 		.pipe(gulp.dest('server/templates'));
 });
 
-gulp.task('clean:all', ['clean', 'symlink']);
-
-gulp.task("build:dev", ['clean:all'], function () {
-	gulp.start("webpack:dev");
-	gulp.start("css:dev");
-	gulp.start("img:dev");
-	gulp.start('copy:fonts');
-	gulp.start('copy:data');
-	gulp.start('replace:dev');
+gulp.task("build:dev", ['webpack:dev', 'css:dev', 'img:dev', 'copy:fonts', 'copy:data', 'replace:dev'], function () {
 });
 
-gulp.task("build:prod", ['clean:all'], function () {
-	gulp.start("webpack:prod");
-	gulp.start("css:prod");
-	gulp.start("img:prod");
-	gulp.start('copy:fonts');
-	gulp.start('copy:data');
-	gulp.start('replace:prod');
-
+gulp.task("build:prod", [ 'webpack:prod', 'css:prod', 'img:prod', 'copy:fonts', 'copy:data', 'replace:prod'], function () {
 });
 
 gulp.task('watch', ['build:dev'], function () {
